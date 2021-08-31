@@ -15,7 +15,7 @@ public class dbutils_practice {
         DBUtils.createConnection();
 
         //using method to get result as a list of maps
-        List<Map<String, Object>> queryResult = DBUtils.getQueryResultMap("select * from departmens");
+        List<Map<String, Object>> queryResult = DBUtils.getQueryResultMap("select * from departments");
 
         //printing result
         for (Map<String, Object> map : queryResult) {
