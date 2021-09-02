@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
 import java.util.List;
-import java.util.jar.JarEntry;
 
 import static io.restassured.RestAssured.*;
 
@@ -50,7 +49,7 @@ public class hrApiWithJsonPath {
        JsonPath jsonPath=response.jsonPath();
 
        //get me all firstname of employees who is working as IT_PROG
-       List<String> firstNames = jsonPath.getList("items.findAll {it.job_id==\"IT_PROG\"}.email");
+       List<String> firstNames = jsonPath.getList("items.findAll {it.job_id==\"IT_PROG\"}.first_name");
        System.out.println("firstNames = " + firstNames);
 
        //get me all firstname of employees who is making more than 10000
