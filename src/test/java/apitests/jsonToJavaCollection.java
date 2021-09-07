@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import utilities.ConfigurationReader;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Map;
 
 import static io.restassured.RestAssured.*;
@@ -40,4 +41,51 @@ public class jsonToJavaCollection {
         System.out.println("phone = " +phone);
     }
 
+    @Test
+    public void AllSpartansToListOfMap() {
+
+        Response response = given().accept(ContentType.JSON)
+                .when().get("/api/spartans");
+
+        assertEquals(response.statusCode(), 200);
+
+        //we need to de-serialize JSON response to List of Maps
+        List<Map<String,Object>> allSpartansList= response.body().as(List.class);
+
+        System.out.println(allSpartansList);
+
+        //print second spartan first name
+        System.out.println(allSpartansList.get(1).get("name"));
+
+        //save spartan 3 in a map
+        Map<String,Object> spartan3=allSpartansList.get(2);
+
+        System.out.println(spartan3);
+
+    }
+
+    @Test
+    public void regionToMap() {
+
+        Response response =when().get("http://54.237.100.89:1000/ords/hr/regions");
+
+        assertEquals(response.statusCode(), 200);
+
+        //we de-serialize JSON response to Map
+        Map<String,Object> regionMap = response.body().as(Map.class);
+
+        System.out.println(regionMap.get("count"));
+        System.out.println(regionMap.get("hasMore"));
+
+        System.out.println(regionMap.get("items"));  // this returns an object.
+
+
+        // we need to cast here (object to list<Map>)
+        List<Map<String ,Object>> itemsList= (List<Map<String, Object>>) regionMap.get("items");
+
+        //print first region name
+        System.out.println(itemsList.get(0).get("region_name"));
+
+
+    }
 }
