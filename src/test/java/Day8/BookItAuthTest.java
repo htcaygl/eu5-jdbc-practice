@@ -19,8 +19,11 @@ public class BookItAuthTest {
     @Test
     public void getAllCampuses() {
 
-        Response response = given().header("Authorization", accessToken)
+
+
+        Response response = given().header("Authorization", accessToken)   // we use header here, because in auth() method there is no bearer token option.
                 .when().get("/api/campuses");
+
 
         response.prettyPrint();
 
