@@ -6,9 +6,10 @@ import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static io.restassured.RestAssured.*;
-import static org.hamcrest.Matchers.*;
-import static org.testng.Assert.*;
 
 
 //Homework-2
@@ -31,17 +32,20 @@ public class HW {
         String phone = response.path("phone[0]");
 
 
+        Map<String ,Object> requestMap= new HashMap<>();
+        requestMap.put("name",name);
+        requestMap.put("gender",gender);
+        requestMap.put("phone",phone);
+
+
         // post to spartan
 
-//        given().and().accept(ContentType.JSON)
-//                .and().contentType(ContentType.JSON)
-//                .and().body()
-//                .when().post("http://54.237.100.89:8000/api/spartans/")
-//                .then().statusCode(201)
-//                .and().contentType(ContentType.JSON)
-
+        given().log().all().accept(ContentType.JSON)
+                .and().contentType(ContentType.JSON)
+                .body(requestMap)
+                .when().post("http://54.237.100.89:8000/api/spartans")
+                .then().log().all()
+                .statusCode(201);
 
     }
-
-
 }

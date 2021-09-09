@@ -14,7 +14,8 @@ public class BookItAuthTest {
         baseURI = "https://cybertek-reservation-api-qa2.herokuapp.com";
     }
 
-    String accessToken="eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NyIsImF1ZCI6InN0dWRlbnQtdGVhbS1sZWFkZXIifQ.a_N9URDBPGOMcDdEVoaMHsJtk3jOnig0v0SCtSWcsGE";
+    //this worked without bearer ?
+    String accessToken="Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI1NyIsImF1ZCI6InN0dWRlbnQtdGVhbS1sZWFkZXIifQ.a_N9URDBPGOMcDdEVoaMHsJtk3jOnig0v0SCtSWcsGE";
 
     @Test
     public void getAllCampuses() {
